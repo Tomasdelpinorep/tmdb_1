@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb/widgets/bottom_navigation_bar_widget.dart';
+import 'package:tmdb/widgets/movie_list_widget.dart';
 
 class MoviesScreen extends StatefulWidget {
   const MoviesScreen({super.key});
@@ -11,6 +11,6 @@ class MoviesScreen extends StatefulWidget {
 class _MoviesScreenState extends State<MoviesScreen> {
   @override
   Widget build(BuildContext context) {
-    return  const Text('hello movies');
+    return  const MovieListWidget();
   }
 }

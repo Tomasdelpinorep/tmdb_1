@@ -28,7 +28,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: const Text('TMDB Exercise 1'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
