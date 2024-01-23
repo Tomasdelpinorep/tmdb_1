@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb/widgets/movie_list_widget.dart';
+import 'package:tmdb/widgets/MovieList/movie_list_widget.dart';
 
 class MoviesScreen extends StatefulWidget {
   const MoviesScreen({super.key});

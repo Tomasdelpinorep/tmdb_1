@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:tmdb/models/movie_list_response/movie_list_response.dart';
 import 'package:http/http.dart' as http;
-import 'package:tmdb/widgets/movie_list_item.dart';
+import 'package:tmdb/widgets/MovieList/movie_list_item.dart';
 
 Future<MovieListResponse> fetchMovieList() async {
   final response = await http.get(Uri.parse(
@@ -29,6 +30,7 @@ class MovieListWidget extends StatefulWidget {
 
 class _MovieListWidgetState extends State<MovieListWidget> {
   late Future<MovieListResponse> futureMovieList;
+  bool _loading = true;
 
   @override
   void initState() {
@@ -42,13 +44,45 @@ class _MovieListWidgetState extends State<MovieListWidget> {
       future: futureMovieList,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return MovieListItem(movieList : snapshot.data!.results);
+          _loading = false;
+          return MovieListItem(
+              movieList: snapshot.data!.results, loading: _loading);
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
 
-        // By default, show a loading spinner.
-        return const CircularProgressIndicator();
+        return Skeletonizer(
+          enabled: true,
+          child: ListView.builder(
+            itemCount: 20,
+            itemBuilder: (context, index) {
+              return Card(
+                clipBehavior: Clip.antiAlias,
+                margin: const EdgeInsets.all(8),
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 400,
+                      width: double.infinity,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Text('')
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+        );
       },
     );
   }

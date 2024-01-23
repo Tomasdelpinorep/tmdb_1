@@ -38,6 +38,7 @@ dependencies:
   http: ^1.2.0
   image_card: ^0.0.4
   expansion_tile_card: ^3.0.0
+  skeletonizer: ^1.0.1
 
 dev_dependencies:
   flutter_test:

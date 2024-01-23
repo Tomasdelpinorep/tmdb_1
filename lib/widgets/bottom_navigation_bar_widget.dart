@@ -33,6 +33,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

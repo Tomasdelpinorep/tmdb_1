@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tmdb/models/movie_list_response/result.dart';
+import 'package:tmdb/models/people_list_response/people_list_response/result.dart';
 
-class MovieListItem extends StatelessWidget {
-  const MovieListItem({super.key, this.movieList});
-  final List<Result>? movieList;
+class PeopleListItem extends StatelessWidget {
+  const PeopleListItem({super.key, this.peopleList});
+  final List<Person>? peopleList;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: movieList!.length,
+      itemCount: peopleList!.length,
       itemBuilder: (context, index) {
         return Card(
+          surfaceTintColor: Colors.white,
           clipBehavior: Clip.antiAlias,
           margin: const EdgeInsets.all(8),
           elevation: 10,
@@ -19,25 +20,23 @@ class MovieListItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 400,
                 width: double.infinity,
                 child: Image.network(
-                  'https://image.tmdb.org/t/p/w500${movieList![index].posterPath}',
+                  'https://image.tmdb.org/t/p/w500${peopleList![index].profilePath}',
                   fit: BoxFit.fill,
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Flexible(
-                    child: Text(
-                      movieList![index].originalTitle.toString(),
-                      style: const TextStyle(
-                          fontSize: 24, fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.clip,
-                          textAlign: TextAlign.center,
-                    ),
+                  Text(
+                    peopleList![index].name.toString(),
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.center,
                   )
                 ],
               )
